@@ -1,0 +1,21 @@
+{
+    "name":"Symfony2 Debuger",
+    "version": "0.2",
+    "description" : "Easily open debug toolBar and profiler from any symfony2 request that have the correct header",
+    "background" : {
+        "persistent" : true,
+        "scripts": ["js/libs/underscore.js","js/bg.js"]
+    },
+    "icons":{
+        "128" : "icon128.png"
+    },
+    "page_action":{
+        "default_icon":"icon128.png",
+        "default_title" :"Symfony2 Debuger",
+        "popup":"popup.html"
+    },
+	"manifest_version": 2,
+    "permissions":[
+        "webRequest", "tabs", "http://*/*","cookies","*://*/*"
+    ]
+}

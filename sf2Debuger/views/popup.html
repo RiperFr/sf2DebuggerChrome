@@ -1,0 +1,40 @@
+<div class="shield">
+    <h3>AB-testing debug not enabled</h3>
+    <input type="button" value="Enable" class="enableDebug"/>
+</div>
+<div class="current_values">
+    <ul class="cookiesStatusList" id="CSL">
+        <li>
+            <div class="title">Satus</div>
+            <div class="content ABstatus"><span id="ABstatus">default</span></div>
+        </li>
+        <li>
+            <div class="title">Tests ID</div>
+            <div class="content" id="segments">
+                <input type="text" id="inputSegments" value=""/>
+
+                <div class="sublist" id="segmentsListZone"></div>
+            </div>
+        </li>
+        <li>
+            <div class="title">Groups ID</div>
+            <div class="content" id="groups">
+                <input type="text" id="inputGroups" value=""/>
+
+                <div class="sublist" id="groupsListZone"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="options">
+    <ul>
+
+        <li class="actionForce"><span class="iconForce" title="Force values for AB-Testing"></span></li>
+        <li class="actionDebug"><span class="iconDebug" title="Remove forced values and use defaults"></span></li>
+
+        <li class="actionReload"><span class="iconForceReload" title="Reload the page now"></span></li>
+        <li class="actionAutoReload"><span class="iconReload" title="Enable/Disable auto-reload of the page when cookies changes"></span>
+        </li>
+        <li class=""><span class="disableDebug iconDisable" title="Disable AB-testing debug"></span></li>
+    </ul>
+</div>

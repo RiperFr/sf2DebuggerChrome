@@ -1,6 +1,6 @@
 {
     "name":"Symfony2 Debuger",
-    "version": "0.2",
+    "version": "0.2.1",
     "description" : "Easily open debug toolBar and profiler from any symfony2 request that have the correct header",
     "background" : {
         "persistent" : true,

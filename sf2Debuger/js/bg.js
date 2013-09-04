@@ -18,6 +18,7 @@
                 tabId:tabId,
                 title: "SF2 debug token: "+token.value+" url: "+token.url
             });
+            console.dir(db)
         }else{
             chrome.pageAction.hide(tabId);
         }
@@ -57,33 +58,40 @@
 
 
     var setTabSFD = function (tabId,status){
+        console.debug('setTabSFD');
         tabStatus[tabId] = status;
         if(status == false){
             db[tabId] = [] ;
         }
     };
     var getTabSFF = function(tabId){
+        console.debug('getTabSFD');
         return tabStatus[tabId] ? true : false ;
     };
     var addToken = function(tabId,data){
+        console.debug('addTokenD');
         if(typeof db[tabId] == "undefined" ){
             db[tabId] = [] ;
         }
         db[tabId].push(data)  ;
     };
     var clearToken = function(tabId){
+        console.debug('clearToken');
         db[tabId] = [] ;
     };
 
     var getTokens = function(tabId){
         if(typeof db[tabId] != "undefined" ){
+            console.debug('get token');
             return db[tabId] ;
         }else{
+            console.debug('get no token');
             return [] ;
         }
     };
 
     var getMainToken = function(tabId){
+        console.debug('get main token');
         var tokens = getTokens(tabId);
         if(tokens.length>0){
             return tokens[0];
@@ -126,7 +134,7 @@
                 url : url,
                 value:token
             };
-            clearToken();
+            clearToken(tabId);
             if(token !== null){
                 setTabSFD(tabId,true);
                 addToken(tabId,tokenData);

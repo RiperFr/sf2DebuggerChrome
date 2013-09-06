@@ -9260,4 +9260,4 @@
 
 
 })(window);
-window.ABJQuery = jQuery.noConflict(true); //Added to force noConflict
+//window.jQuery = jQuery.noConflict(true); //Added to force noConflict

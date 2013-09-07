@@ -1,7 +1,8 @@
 {
-    "name":"Symfony2 Debugger",
-    "version": "0.2.3",
-    "description" : "Easily open debug toolBar and profiler from any symfony2 request that have the correct header",
+    "name":"__MSG_appName__",
+    "version": "0.2.4",
+    "description" : "__MSG_appDesc__",
+    "default_locale": "en",
     "background" : {
         "persistent" : true,
         "scripts": ["js/libs/underscore.js", "js/bg.js"]

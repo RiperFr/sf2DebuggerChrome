@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "Symfony2 Profiler accès facile",
+        "description": "Donne accès directement depuis la bare d'adresse au Syfony2Profiler"
+    },
+    "appDesc": {
+        "message": "Accès rapide au Symfony2Profiler, et permet l'accès au profiling des requêtes AJAX et sans body",
+        "description":"Vous permet d'accéder rapidement et facilement au Profiler de Symfony2 meme si la debugTool bar ne s'affiche pas. Le token present dans le header est utilisé directement. \n C'est souvent utile lors du development d'API REST  ou de site web avec des requêtes AJAX/XHR"
+    }
+}

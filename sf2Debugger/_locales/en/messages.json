@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "Symfony2 Profiler easy access",
+        "description": "Easily open profiler from any symfony2 request that have the correct header"
+    },
+    "appDesc": {
+        "message": "Symfony2 Profiler easy access",
+        "description":"Easily open debug toolBar and profiler from any symfony2 request that have the correct headerf  \n  Give access to Symfoy2 Profiler if any Response from a server is made with the \"X-Debug-Token\". Very useful for REST & AJAX Development/testing  \n   \n   \n # In details  \n This is an extension that help developer and/or tester to see relevant information on Symfony2 based applications.  \n When you enable debug mode, you probably noticed a toolBar at the bottom. Very useful, clicking on it lead the the Profiler.  \n The profiler make easy to access logs and many information about the current request.  \n   \n This extension is here to allow you to access easily to the fofiler event if the debug toolbar is disabled or not shown.  \n If you already made REST application with Symfony2  framework, you know that the Debug tool bar only show up if you render a real webPage.  \n If you render JSON or XML, you just have the result and to go to the Profiler is a long way."
+    }
+}

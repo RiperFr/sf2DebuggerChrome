@@ -12,18 +12,23 @@
                 value: null
             },
             {
-                name : 'profilerDestination',
-                value : 'popup'
+                name: 'profilerDestination',
+                value: 'popup'
             },
             {
-                name : 'alwaysDisplayPopup',
-                value : true
+                name: 'alwaysDisplayPopup',
+                value: true
             }
         ];
 
         getConfiguration(function (configurations) {
-            if (configurations.length <= 0) {
-                storeConfiguration(defaultValues);
+            console.dir(configurations);
+            if (typeof configurations !== 'undefined' && configurations.length <= 0) {
+                storeConfiguration(defaultValues, function () {
+                });
+            } else if (typeof configurations == 'undefined') {
+                storeConfiguration(defaultValues, function () {
+                });
             }
         });
     };
@@ -36,11 +41,11 @@
      */
     var getConfigurationKey = function (keyName, callback) {
         getConfiguration(function (configurations) {
-            if(configurations.length >=1){
-                _.each(configurations,function(item){
-                    if(item.name == keyName){
+            if (configurations && configurations.length >= 1) {
+                _.each(configurations, function (item) {
+                    if (item.name == keyName) {
                         callback.apply(this, [item.value]);
-                        return ; //avoid calling callback twice
+                        return; //avoid calling callback twice
                     }
                 });
             }
@@ -68,6 +73,7 @@
      * @param data
      */
     var storeConfiguration = function (data, callback) {
+        console.dir(data);
         chrome.storage.sync.set({'configuration': data}, function () {
             console.debug('Configuration saved');
             callback.apply(this);

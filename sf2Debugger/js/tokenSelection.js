@@ -5,7 +5,7 @@
     };
 
     var templates = {
-        tokenList        : _.template('<ul class="tokenList">{{ tokenList }}</ul>'),
+        tokenList        : _.template('<div class="tokenHeader"><span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span></div><ul class="tokenList">{{ tokenList }}</ul>'),
         tokenListItem    : _.template('' +
             '<li class="tokenListItem">' +
             '   <span class="tokenUrl">{{ url }}</span>' +
@@ -14,31 +14,44 @@
             '   <span class="tokenProfiler">{{profilerLinkTemplate}}</span>' +
             '</li>'),
         tokenProfilerLink: _.template('' +
-            '<a href="{{profilerLink}}" target="_blank" >Profiler</a>')
+            '<a href="#" class="open-profiler pure-button pure-button-xsmall pure-button-secondary" data-token=\'{{profilerTokenSerial}}\' >Profiler</a>')
     };
 
 
     var constructList = function (tokens)
     {
-        console.debug('construct list');
-        console.dir(arguments);
+        console.dir(chrome.i18n.getMessage('tokenDetected'));
         data = [];
         _.each(tokens, function (item, key)
         {
-            console.dir(arguments);
             var oneToken = _.clone(item);
             oneToken.profilerLinkTemplate = templates.tokenProfilerLink(oneToken);
             data.push(oneToken);
         });
-        console.dir(data);
         var tokenList = '';
         _.each(data, function (item)
         {
             tokenList += templates.tokenListItem(item);
         });
-        console.dir(tokenList) ;
+
         var dom = document.getElementById('tokenList');
-        dom.innerHTML = templates.tokenList({tokenList: tokenList});
+        dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length});
+
+        //manage click on openProfiler button
+        $(dom).on('click','.open-profiler',function(jEvent){
+            var data = null;
+            _.each(jEvent.target.attributes, function(item){
+                if(item.nodeName == 'data-token'){
+                    data = item.nodeValue;
+                }
+            });
+            if(data == null){
+                alert('An error occurred');
+            }else{
+                var token = JSON.parse(data);
+                window.openToken(token);
+            }
+        })
     };
 
 
@@ -59,10 +72,6 @@
                 );
             }
         );
-
-        jQuery('body').on('click','a',function(){
-            console.dir(arguments);
-        })
 
     };
     var setTokens = function (tokens)

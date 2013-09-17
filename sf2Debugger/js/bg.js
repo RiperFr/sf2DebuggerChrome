@@ -10,7 +10,7 @@
      * @param details
      * @param tabStatus
      */
-    function enableIcon(tabId, details, tabStatus)
+    function enableIcon(tabId)
     {
         var status = getTokenQuantity(tabId) > 0 ? true : false;
         if (status)
@@ -18,7 +18,6 @@
             chrome.pageAction.show(tabId);
             var token = getMainToken(tabId);
             updatePageAction(tabId);
-            console.dir(db)
         } else
         {
             chrome.pageAction.hide(tabId);
@@ -32,7 +31,6 @@
     chrome.extension.onRequest.addListener(
         function (request, sender, sendResponse)
         {
-            console.dir(arguments);
             if (!request.method)
             {
                 return;
@@ -42,7 +40,6 @@
             {
                 case 'getTokens' :
                     var tabId = request.data.tabId;
-                    console.debug('getTokens ' + tabId);
                     var tokens = getTokens(tabId);
                     sendPopupMessage('setTokens', _.clone(tokens));
                     break;
@@ -72,44 +69,40 @@
             { //Multiple token, we display the popup for selection
 
             } else
-            { // only one token (we open the profiler
-                var url = createProfilerLink(token);
-                chrome.windows.create({'url': url, 'type': 'popup'});
-                /*chrome.tabs.create({
-                 'url': url,
-                 "windowId":null
-                 });*/
+            { // only one token (we open the profiler directly if the configuration say so)
+                window.getConfigurationKey('alwaysDisplayPopup', function (alwaysDisplayPopup) {
+                    if(!alwaysDisplayPopup){
+                        window.openToken(token);
+                    }
+                });
+
             }
         }
-        console.dir(arguments);
     };
     chrome.pageAction.onClicked.addListener(onPageActionClicked);
 
 
-    var createProfilerLink = function (token)
-    {
-        var matches = token.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-        var domain = matches && matches[1];
-        var url = 'http://' + domain + '/_profiler/' + token.value;
-        return url ;
-    };
+
 
     var updatePageAction = function (tabId)
     {
         var tokenQuantity = getTokenQuantity(tabId);
+        window.getConfigurationKey('alwaysDisplayPopup', function (alwaysDisplayPopup) {
+            if (tokenQuantity > 1 || alwaysDisplayPopup == true)
+            {
+                chrome.pageAction.setPopup({
+                    tabId: tabId,
+                    popup: "tokenSelection.html"
+                });
+            }
+        });
+
 
         chrome.pageAction.setTitle({
             tabId: tabId,
             title: tokenQuantity + " Token(s)"
         });
-        console.debug(tokenQuantity);
-        if (tokenQuantity > 1)
-        {
-            chrome.pageAction.setPopup({
-                tabId: tabId,
-                popup: "tokenSelection.html"
-            });
-        }
+
     };
 
     /**
@@ -125,7 +118,7 @@
         {
             db[tabId] = [];
         }
-        data.profilerLink = createProfilerLink(data);
+        data.profilerTokenSerial = JSON.stringify(data);
         db[tabId].push(data);
         updatePageAction(tabId);
     };
@@ -173,6 +166,7 @@
      */
 
 
+    var headerName = "X-Debug-Token";
     /**
      * Parse all headers and return the tokenId if present
      * @param headers
@@ -183,12 +177,23 @@
         var token = null;
         _.each(headers, function (item)
         {
-            if (item.name == "X-Debug-Token")
+            if (item.name == headerName)
             {
                 token = item.value;
             }
         });
         return token;
+    };
+
+    /**
+     * Get from configuration the current header. it will stay un-touch until first call of this function
+     * @param callback
+     */
+    var fixHeaderName = function(callback){
+        window.getConfigurationKey('headerName', function (configHeaderName) {
+            headerName = configHeaderName ;
+            callback.apply(this,[configHeaderName])
+        });
     };
 
     //Capture main_frame onlu (xxhr request not captured here)
@@ -200,18 +205,23 @@
             var responseHeaders = data.responseHeaders;
             var url = data.url;
             var type = data.type;
-            var token = getTokenFromHeaders(responseHeaders);
+            clearToken(tabId); //anyway we clear the current status of the tab, and remove all token stored
+            fixHeaderName(function(){ //We check the configuration for the tokenHeader
 
-            var tokenData = {
-                type : type,
-                url  : url,
-                value: token
-            };
-            clearToken(tabId);
-            if (token !== null)
-            {
-                addToken(tabId, tokenData);
-            }
+                var token = getTokenFromHeaders(responseHeaders);
+
+                var tokenData = {
+                    type : type,
+                    url  : url,
+                    value: token
+                };
+
+                if (token !== null)
+                {
+                    addToken(tabId, tokenData);
+                }
+            });
+
         };
         var filters_main_frame = {
             urls : ["<all_urls>"],
@@ -235,6 +245,9 @@
             if (token !== null)
             {
                 addToken(tabId, tokenData);
+                enableIcon(tabId);
+            }else{
+
             }
         };
         var filters_sub_frame = {

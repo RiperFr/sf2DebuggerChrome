@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>SF2 profiler</title>
+    <meta name="description" content="">
+    <meta name="author" content="Sven Read">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="css/options.css">
+
+
+</head>
+
+<body>
+<div class="pure-g">
+    <div class="pure-u-1-6">
+    </div>
+    <div class="pure-u-2-3">
+        <form class="pure-form pure-form-aligned " name="options">
+            <fieldset>
+                <legend>Configuration</legend>
+                <div class="pure-control-group">
+                    <label for="headerName" i18n="options_form_headerName"></label>
+                    <input id="headerName" type="text" name="headerName" placeholder="Token header"
+                           value="X-Debug-Token">
+                </div>
+                <div class="pure-control-group">
+                    <label for="defaultPage" i18n="options_form_defaultPage"></label>
+                    <select name="defaultPage" id="defaultPage">
+                        <option value="null" selected>Default</option>
+                        <option value="request">Request</option>
+                        <option value="config">Config</option>
+                        <option value="exception">Exceptions</option>
+                        <option value="events">Events</option>
+                        <option value="logger">Logs</option>
+                        <option value="time">Timeline</option>
+                        <option value="router">Routing</option>
+                    </select>
+                </div>
+                <div class="pure-control-group">
+                    <label for="profilerDestination" i18n="options_form_profilerDestination"></label>
+                    <select name="profilerDestination" id="profilerDestination">
+                        <option value="popup" selected i18n="options_form_profilerDestination_popup">PopUp</option>
+                        <option value="newtab" i18n="options_form_profilerDestination_newTab">New Tab</option>
+                    </select>
+                </div>
+                <div class="pure-control-group">
+                    <label for="alwaysDisplayPopup" i18n="options_form_alwaysDisplayPopup"></label>
+                    <select name="alwaysDisplayPopup" id="alwaysDisplayPopup">
+                        <option value="true"  i18n="yes" selected>Yes</option>
+                        <option value="false" i18n="no" >No</option>
+                    </select>
+                </div>
+                <div class="pure-controls">
+                    <button type="reset" class="pure-button" i18n="options_form_reset">reset</button>
+                    <button type="submit" class="pure-button pure-button-primary" i18n="options_form_save"></button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="pure-u-1-6">
+    </div>
+</div>
+<script src="js/libs/underscore.js"></script>
+<script src="js/libs/jquery.js"></script>
+<script src="js/configuration.js"></script>
+<script src="js/options.js"></script>
+</body>
+</html>

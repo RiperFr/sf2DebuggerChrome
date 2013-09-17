@@ -5,6 +5,45 @@
     },
     "appDesc": {
         "message": "Accès rapide au Symfony2Profiler, et permet l'accès au profiling des requêtes AJAX et sans body",
-        "description":"Vous permet d'accéder rapidement et facilement au Profiler de Symfony2 meme si la debugTool bar ne s'affiche pas. Le token present dans le header est utilisé directement. \n C'est souvent utile lors du development d'API REST  ou de site web avec des requêtes AJAX/XHR"
+        "description": "Vous permet d'accéder rapidement et facilement au Profiler de Symfony2 meme si la debugTool bar ne s'affiche pas. Le token present dans le header est utilisé directement. \n C'est souvent utile lors du development d'API REST  ou de site web avec des requêtes AJAX/XHR"
+    },
+    "tokenDetected": {
+        "message": "Token détécté",
+        "description": "Number of token found durring the current session and tab"
+    },
+    "options_form_save": {
+        "message": "Enregistrer"
+    },
+    "options_form_headerName": {
+        "message": "Nom du header HTTP :"
+    },
+    "options_form_defaultPage": {
+        "message": "Page par défaut du profiler :"
+    },
+    "options_form_profilerDestination": {
+        "message": "Ouvrir le profiler dans :"
+    },
+    "options_form_profilerDestination_popup": {
+        "message": "un Popup"
+    },
+    "options_form_profilerDestination_newTab": {
+        "message": "un nouvel onglet"
+    },
+    "options_form_reset": {
+        "message": "Reset"
+    },
+    "options_configuration_saved": {
+        "message": "Configuration enregistrée"
+    },
+    "options_form_alwaysDisplayPopup": {
+        "message": "Toujours afficher le popup <i>(bare d'adresse)</i>"
+    },
+
+
+    "yes": {
+        "message": "Oui"
+    },
+    "no": {
+        "message": "Non"
     }
 }

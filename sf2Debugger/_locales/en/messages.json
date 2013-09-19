@@ -37,8 +37,10 @@
     },
     "options_form_alwaysDisplayPopup" :{
         "message" : "Always display the popup <i>(addresse bar)</i>"
-    }
-    ,
+    },
+    "options_form_autoClearTab" :{
+        "message" : "Automatically clear all token when tab is refreshed"
+    },
     "yes" :{
         "message" : "Yes"
     },

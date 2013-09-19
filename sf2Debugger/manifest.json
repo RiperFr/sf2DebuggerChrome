@@ -1,12 +1,13 @@
 {
     "name":"__MSG_appName__",
-    "version": "0.3.4",
+    "version": "0.4.1",
     "description" : "__MSG_appDesc__",
     "default_locale": "en",
     "options_page": "options.html",
     "background" : {
         "persistent" : true,
-        "scripts": ["js/libs/underscore.js", "js/configuration.js", "js/openToken.js", "js/bg.js"]
+        "scripts": ["js/libs/underscore.js", "js/configuration.js", "js/openToken.js", "js/bg.js"],
+        "run_at": "document_end"
     },
     "icons":{
         "128" : "icon128.png"

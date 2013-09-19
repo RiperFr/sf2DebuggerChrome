@@ -1,28 +1,30 @@
 (function () {
 
+    var defaultValues = [
+        {
+            name: 'headerName',
+            value: 'X-Debug-Token'
+        },
+        {
+            name: 'defaultPage',
+            value: null
+        },
+        {
+            name: 'profilerDestination',
+            value: 'popup'
+        },
+        {
+            name: 'alwaysDisplayPopup',
+            value: true
+        },
+        {
+            name: "autoClearTab",
+            value: true
+        }
+    ];
 
     var startup = function () {
-        var defaultValues = [
-            {
-                name: 'headerName',
-                value: 'X-Debug-Token'
-            },
-            {
-                name: 'defaultPage',
-                value: null
-            },
-            {
-                name: 'profilerDestination',
-                value: 'popup'
-            },
-            {
-                name: 'alwaysDisplayPopup',
-                value: true
-            }
-        ];
-
         getConfiguration(function (configurations) {
-            console.dir(configurations);
             if (typeof configurations !== 'undefined' && configurations.length <= 0) {
                 storeConfiguration(defaultValues, function () {
                 });
@@ -33,6 +35,16 @@
         });
     };
 
+    var getDefaultValue = function (key) {
+        var to = null;
+        _.each(defaultValues, function (item) {
+            if (item.name == key) {
+                to = item.value;
+            }
+        });
+        return to;
+    };
+
 
     /**
      * Retrieve a configuration key from chrome storage
@@ -41,15 +53,23 @@
      */
     var getConfigurationKey = function (keyName, callback) {
         getConfiguration(function (configurations) {
+            var br = false ;
             if (configurations && configurations.length >= 1) {
                 _.each(configurations, function (item) {
+                    if(br === true){
+                        return ; // do not call callback twice
+                    }
                     if (item.name == keyName) {
                         callback.apply(this, [item.value]);
-                        return; //avoid calling callback twice
+                        br = true; //avoid calling callback twice
+                        //console.debug(item.name+' found') ;
                     }
                 });
             }
-
+            if(br === false){
+                //console.debug('Default value used for configuration.'+keyName);
+                callback.apply(this,[getDefaultValue(keyName)]);
+            }
         })
     };
 
@@ -71,6 +91,7 @@
     /**
      * Store data into Configuration
      * @param data
+     * @param callback
      */
     var storeConfiguration = function (data, callback) {
         console.dir(data);

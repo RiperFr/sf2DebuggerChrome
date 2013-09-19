@@ -5,7 +5,11 @@
     };
 
     var templates = {
-        tokenList        : _.template('<div class="tokenHeader"><span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span></div><ul class="tokenList">{{ tokenList }}</ul>'),
+        tokenList        : _.template('<div class="tokenHeader">' +
+            '<span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span> ' +
+            '<span title="Clear" class="icon icon_clear action-clear"></span> ' +
+            '<span title="refresh" class="icon icon_refresh action-refresh"></span> ' +
+            '</div><ul class="tokenList">{{ tokenList }}</ul>'),
         tokenListItem    : _.template('' +
             '<li class="tokenListItem">' +
             '   <span class="tokenUrl">{{ url }}</span>' +
@@ -20,7 +24,6 @@
 
     var constructList = function (tokens)
     {
-        console.dir(chrome.i18n.getMessage('tokenDetected'));
         data = [];
         _.each(tokens, function (item, key)
         {
@@ -51,7 +54,29 @@
                 var token = JSON.parse(data);
                 window.openToken(token);
             }
-        })
+        });
+
+        $(dom).on('click','.action-refresh',function(jEvent){
+            window.location.reload();
+        });
+
+        $(dom).on('click','.action-clear',function(jEvent){
+            chrome.tabs.query(
+                {currentWindow: true, active: true},
+                function (tabArray)
+                {
+                    tabId = tabArray[0].id;
+                    chrome.extension.sendRequest(
+                        {
+                            method: "clearTabDb",
+                            data  : {
+                                tabId: tabId
+                            }
+                        }
+                    );
+                }
+            );
+        });
     };
 
 
@@ -81,11 +106,9 @@
     };
 
 
-    chrome.extension.onRequest.addListener(
+    chrome.extension.onMessage.addListener(
         function (request, sender, sendResponse)
         {
-            console.debug('message received');
-            console.dir(request);
             if (!request.action)
             {
                 return;
@@ -94,6 +117,10 @@
             {
                 case 'setTokens' :
                     setTokens(request.data);
+                    break;
+                case 'TokenListUpdated' :
+                    setTimeout(function(){window.location.reload()},0);
+                    break;
             }
 
         }

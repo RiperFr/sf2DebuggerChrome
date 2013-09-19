@@ -38,7 +38,9 @@
     "options_form_alwaysDisplayPopup": {
         "message": "Toujours afficher le popup <i>(bare d'adresse)</i>"
     },
-
+    "options_form_autoClearTab" :{
+        "message" : "Vider la liste des token lors du rafraichissement d'un onglet"
+    },
 
     "yes": {
         "message": "Oui"

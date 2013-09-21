@@ -1,4 +1,17 @@
-
+body{
+    font-family: 'Oxygen', sans-serif;
+}
+.header{
+    position:absolute;
+    top:10px;
+    left :10px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight : 700 ;
+}
+.tokenHeader{
+    font-family: 'PT Sans', sans-serif;
+    font-weight : 700 ;
+}
 
 .tokenList {
     list-style: none;
@@ -110,19 +123,25 @@
     background-position: center center;
     border-radius: 2px;
     line-height:16px;
+    background-size: 100% 100%;
 }
 
 .tokenHeader .icon:hover{
     cursor: pointer;
     background-color: rgba(161,227,4,0.2) ;
     transition: 0.1s ease-in-out ;
+
 }
 
 
 .icon.icon_refresh {
-    background-image: url(Refresh-icon.png);
+    background-image: url('Refresh-icon.png');
 }
 
 .icon.icon_clear {
-    background-image: url(Recycle-Bin-icon.png);
+    background-image: url('Recycle-Bin-icon.png');
+}
+
+.icon.icon_app {
+    background-image: url('../icon32.png');
 }

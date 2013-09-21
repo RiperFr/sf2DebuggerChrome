@@ -1,6 +1,44 @@
-.pure-form-aligned .pure-control-group label{
-    width:15em;
+.pure-form-aligned .pure-control-group label {
+    width: 15em;
 }
+
 .pure-form-aligned .pure-controls {
     margin: 1.5em 0 0 15em;
+}
+
+body .pure-g [class *="pure-u"] {
+    font-family: 'Oxygen', sans-serif;
+}
+
+html, button, input, select, textarea {
+    font-family: 'Oxygen', sans-serif;
+}
+
+body, .body pure-g {
+    font-family: 'Oxygen', sans-serif;
+}
+
+.header {
+    font-family: 'PT Sans', sans-serif;
+    margin-bottom:50px;
+}
+.header h1 {
+    display:block;
+    margin:0;
+    padding:0;
+    margin-top: -86px;
+    margin-left: 146px;
+}
+
+.big-icon {
+    height: 128px;
+    width: 128px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display:inline-block;
+    background-size: 100% 100%;
+}
+
+.big-icon.logo{
+    background-image: url('../icon.png');
 }

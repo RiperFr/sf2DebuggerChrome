@@ -57,7 +57,7 @@
         });
 
         $(dom).on('click','.action-refresh',function(jEvent){
-            window.location.reload();
+            startup();
         });
 
         $(dom).on('click','.action-clear',function(jEvent){
@@ -119,7 +119,7 @@
                     setTokens(request.data);
                     break;
                 case 'TokenListUpdated' :
-                    setTimeout(function(){window.location.reload()},0);
+                    startup();
                     break;
             }
 

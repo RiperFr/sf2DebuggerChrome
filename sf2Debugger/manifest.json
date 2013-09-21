@@ -13,7 +13,10 @@
         "128": "icon128.png"
     },
     "page_action": {
-        "default_icon": "icon128.png",
+        "default_icon": {
+            "19": "icon32.png",
+            "38": "icon64.png"
+        },
         "default_title": "Symfony2 Debuger",
         "popup": "popup.html"
     },

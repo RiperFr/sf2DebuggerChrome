@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>SF2 token profiler chooser</title>
+    <title>Symfony profiler shortcut</title>
     <meta name="description" content="">
     <meta name="author" content="Sven Read">
 
@@ -17,6 +17,7 @@
     <script src="js/tokenSelection.js" type="text/javascript"></script>
     <script src="js/ga.js" type="text/javascript"></script>
 
+    <link href='css/fonts.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/tokenSelection.css">
     <style type="text/css">
         html {
@@ -26,7 +27,7 @@
         body{
             max-height:100%;
             max-width:100%;
-            min-width:300px;
+            min-width:370px;
             margin:0;
             padding:10px;
         }
@@ -36,7 +37,13 @@
 </head>
 
 <body>
+<div class="header">
+    <span class="icon icon_app"></span>
+    <span i18n="appName" >Symfony profiler shortcut</span>
+</div>
 <div id="sf2Zone"></div>
 <div id="tokenList"></div>
+
+<script src="js/i18n.js"></script>
 </body>
 </html>

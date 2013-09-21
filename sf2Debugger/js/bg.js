@@ -5,8 +5,6 @@
     /**
      * Display the app icon into tha address bar of the corresponding tab
      * @param tabId
-     * @param details
-     * @param tabStatus
      */
     var enableIcon = function (tabId) {
         getTokenQuantity(tabId, function (quantity) {

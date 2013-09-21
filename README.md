@@ -22,3 +22,9 @@ This extension can help you to open the profiler of AJAX/XHR request made on you
 
 # OFFICIAL LINK
 https://chrome.google.com/webstore/detail/symfony2-debuger/denlhphadllhcolhlbbbjmhkgbknmmon
+
+
+## Licencing
+This webapp/extension and all original files contained are under [Creative Commons Attribution License (BY-NC-SA)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+Thanks for VisualPharm for some icons : http://www.visualpharm.com/
+Thanks for Symfony2 and Sensiolabs for SF icon : http://symfony.com/logo

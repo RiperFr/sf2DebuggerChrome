@@ -311,7 +311,7 @@
         };
         var filters_sub_frame = {
             urls: ["<all_urls>"],
-            types: ["xmlhttprequest"]
+            types: ["xmlhttprequest","sub_frame"]
         };
         chrome.webRequest.onHeadersReceived.addListener(sub_frame, filters_sub_frame, ['responseHeaders']);
     }

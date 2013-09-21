@@ -7,8 +7,8 @@
     var templates = {
         tokenList        : _.template('<div class="tokenHeader">' +
             '<span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span> ' +
-            '<span title="Clear" class="icon icon_clear action-clear"></span> ' +
-            '<span title="refresh" class="icon icon_refresh action-refresh"></span> ' +
+            '<span title="Clear" class="icon icon_clear{{iconClear}} action-clear"></span> ' +
+            '<span title="Options" class="icon icon_config action-config"></span> ' +
             '</div><ul class="tokenList">{{ tokenList }}</ul>'),
         tokenListItem    : _.template('' +
             '<li class="tokenListItem">' +
@@ -38,7 +38,13 @@
         });
 
         var dom = document.getElementById('tokenList');
-        dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length});
+        var iconClear = '_full' ;
+        if(tokens.length>0){
+            iconClear = '_full'
+        }else{
+            iconClear = '_empty'
+        }
+        dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length,iconClear:iconClear});
 
         //manage click on openProfiler button
         $(dom).on('click','.open-profiler',function(jEvent){
@@ -56,8 +62,8 @@
             }
         });
 
-        $(dom).on('click','.action-refresh',function(jEvent){
-            startup();
+        $(dom).on('click','.action-config',function(jEvent){
+            chrome.tabs.create({'url': 'options.html'});
         });
 
         $(dom).on('click','.action-clear',function(jEvent){

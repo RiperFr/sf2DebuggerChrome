@@ -24,15 +24,15 @@
     ];
 
     var startup = function () {
-        getConfiguration(function (configurations) {
-            if (typeof configurations !== 'undefined' && configurations.length <= 0) {
-                storeConfiguration(defaultValues, function () {
-                });
-            } else if (typeof configurations == 'undefined') {
-                storeConfiguration(defaultValues, function () {
-                });
-            }
-        });
+            getConfiguration(function (configurations) {
+                if (typeof configurations !== 'undefined' && configurations.length <= 0) {
+
+                } else if (typeof configurations == 'undefined') {
+                    storeConfiguration({}, function () {
+                        chrome.tabs.create({'url': 'options.html'});
+                    });
+                }
+            });
     };
 
     var getDefaultValue = function (key) {
@@ -95,10 +95,18 @@
      */
     var storeConfiguration = function (data, callback) {
         console.dir(data);
-        chrome.storage.sync.set({'configuration': data}, function () {
-            console.debug('Configuration saved');
-            callback.apply(this);
-        });
+        if(data == null){
+            chrome.storage.sync.remove('configuration',function(){
+                console.debug('Configuration cleared');
+                callback.apply(this);
+            })
+        }else{
+            chrome.storage.sync.set({'configuration': data}, function () {
+                console.debug('Configuration saved');
+                callback.apply(this);
+            });
+        }
+
     };
 
     window.getConfigurationKey = getConfigurationKey;

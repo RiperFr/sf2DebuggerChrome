@@ -117,8 +117,6 @@ body{
     display: inline-block;
     height:16px;
     width:16px;
-    padding:2px;
-    margin-bottom:-4px;
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 2px;
@@ -134,12 +132,15 @@ body{
 }
 
 
-.icon.icon_refresh {
-    background-image: url('Refresh-icon.png');
+.icon.icon_config {
+    background-image: url('config.png');
 }
 
-.icon.icon_clear {
-    background-image: url('Recycle-Bin-icon.png');
+.icon.icon_clear_full {
+     background-image: url('clear-full.png');
+ }
+.icon.icon_clear_empty {
+    background-image: url('clear-empty.png');
 }
 
 .icon.icon_app {

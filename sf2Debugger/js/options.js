@@ -26,8 +26,9 @@
      */
     var initForm = function (form, data) {
         _.each(data, function (item) {
-            console.debug('Setting form field ' + item.name + ' with value:' + item.value);
-            form.find('*[name=' + item.name + ']').val(item.value);
+            var formValue = unCleanDataForForm(item.value);
+            console.debug('Setting form field ' + item.name + ' with value:' + formValue);
+            form.find('*[name=' + item.name + ']').val(formValue);
         });
     };
 
@@ -105,6 +106,19 @@
         }
         if (data == 'false') {
             return false;
+        }
+        return data ;
+    };
+
+    var unCleanDataForForm = function(data){
+        if (data == null) {
+            return 'null';
+        }
+        if (data == true) {
+            return 'true';
+        }
+        if (data == false) {
+            return 'false';
         }
         return data ;
     };

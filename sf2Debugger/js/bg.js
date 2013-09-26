@@ -11,7 +11,7 @@
             var status = (quantity > 0 ? true : false);
             if (status) {
                 chrome.pageAction.show(tabId);
-                updatePageAction(tabId,function(){
+                updatePageAction(tabId, function () {
 
                 });
             } else {
@@ -39,8 +39,8 @@
                     break;
                 case 'clearTabDb' :
                     var tabId = request.data.tabId;
-                    clearToken(tabId,function(){
-                        updatePageAction(tabId,function(){
+                    clearToken(tabId, function () {
+                        updatePageAction(tabId, function () {
 
                         })
                     });
@@ -82,9 +82,10 @@
     chrome.pageAction.onClicked.addListener(onPageActionClicked);
 
 
-    var updatePageAction = function (tabId,callback) {
-        if(typeof callback == 'undefined'){
-            callback = function(){};
+    var updatePageAction = function (tabId, callback) {
+        if (typeof callback == 'undefined') {
+            callback = function () {
+            };
         }
         getTokenQuantity(tabId, function (tokenQuantity) {
             window.getConfigurationKey('alwaysDisplayPopup', function (alwaysDisplayPopup) {
@@ -144,7 +145,7 @@
                 });
                 //console.debug('here after')
             });
-        }else{
+        } else {
             callback.call(this);
         }
 
@@ -155,18 +156,18 @@
         initTabDb(tabId, function () {
             data.profilerTokenSerial = JSON.stringify(data);
             db[tabId].tokens.push(data);
-            updatePageAction(tabId,function(){
-                sendPopupMessage("TokenListUpdated",{});
+            updatePageAction(tabId, function () {
+                sendPopupMessage("TokenListUpdated", {});
                 callback.call(this);
             });
         });
 
     };
     var clearToken = function (tabId, callback) {
-        initTabDb(tabId,function(){
+        initTabDb(tabId, function () {
             db[tabId].tokens = [];
             //console.debug('callback clearToken');
-            sendPopupMessage("TokenListUpdated",{});
+            sendPopupMessage("TokenListUpdated", {});
             callback.call(this);
         });
     };
@@ -219,6 +220,18 @@
         return token;
     };
 
+    var getStatusFromStatusLine = function (statusLine) {
+        var exploded = statusLine.split(" ");
+        var code =  exploded[1];
+        var codeLevel = parseInt(code[0]+'00');
+        return {
+            code: exploded[1],
+            message: exploded[2],
+            httpVersion: exploded[0],
+            codeLevel : codeLevel
+        }
+    };
+
     /**
      * Get from configuration the current header. it will stay un-touch until first call of this function
      * @param callback
@@ -237,6 +250,7 @@
         var main_frame = function (data) {
             var tabId = data.tabId;
             var responseHeaders = data.responseHeaders;
+            var statusLine = data.statusLine;
             var url = data.url;
             var type = data.type;
             //console.debug('main_frame get configClearTab')
@@ -248,9 +262,16 @@
                     fixHeaderName(function () { //We check the configuration for the tokenHeader
                         //console.debug('fixHedername callback run');
                         var token = getTokenFromHeaders(responseHeaders);
+                        var status = getStatusFromStatusLine(statusLine);
                         var tokenData = {
                             type: type,
                             url: url,
+                            status: status.code,
+                            statusMessage : status.message,
+                            httpVersion : status.httpVersion,
+                            statusLine : statusLine,
+                            date:new Date(),
+                            codeLevel : status.codeLevel,
                             value: token
                         };
                         if (token !== null) {
@@ -258,7 +279,7 @@
                                 //console.debug('Token added')
                             });
                             enableIcon(tabId);
-                        }else{
+                        } else {
                             //console.debug('No token');
                         }
                     });
@@ -296,10 +317,18 @@
             var responseHeaders = data.responseHeaders;
             var url = data.url;
             var type = data.type;
+            var statusLine = data.statusLine;
             var token = getTokenFromHeaders(responseHeaders);
+            var status = getStatusFromStatusLine(statusLine);
             var tokenData = {
                 type: type,
                 url: url,
+                status: status.code,
+                statusMessage : status.message,
+                httpVersion : status.httpVersion,
+                statusLine : statusLine,
+                codeLevel : status.codeLevel,
+                date:new Date(),
                 value: token
             };
             if (token !== null) {
@@ -311,7 +340,7 @@
         };
         var filters_sub_frame = {
             urls: ["<all_urls>"],
-            types: ["xmlhttprequest","sub_frame"]
+            types: ["xmlhttprequest", "sub_frame"]
         };
         chrome.webRequest.onHeadersReceived.addListener(sub_frame, filters_sub_frame, ['responseHeaders']);
     }

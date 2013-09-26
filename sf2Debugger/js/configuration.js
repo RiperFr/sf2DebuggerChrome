@@ -20,6 +20,10 @@
         {
             name: "autoClearTab",
             value: true
+        },
+        {
+            name: "reverseList",
+            value: true
         }
     ];
 

@@ -41,7 +41,9 @@
     "options_form_autoClearTab" :{
         "message" : "Vider la liste des token lors du rafraichissement d'un onglet"
     },
-
+    "options_form_reverseList" :{
+        "message" : "Affiche les token détécté en haut de la liste"
+    },
     "yes": {
         "message": "Oui"
     },

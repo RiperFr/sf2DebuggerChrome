@@ -11,10 +11,12 @@
             '<span title="Options" class="icon icon_config action-config"></span> ' +
             '</div><ul class="tokenList">{{ tokenList }}</ul>'),
         tokenListItem    : _.template('' +
-            '<li class="tokenListItem">' +
-            '   <span class="tokenUrl">{{ url }}</span>' +
-            '   <span class="tokenType">{{ type }}</span>' +
-            '   <span class="tokenValue">{{ value }}</span>' +
+            '<li class="tokenListItem" >' +
+            '   <span class="tokenUrl" data-detailsTarget="true" data-url="{{ url }}">{{ url }}</span>' +
+            '   <span class="s-item status status_{{codeLevel}}" title="Status" data-hover="{{statusLine}}">{{status}}</span>' +
+            '   <span class="s-item icon icon_date" title="Date" data-hover="{{date}}"></span>' +
+            '   <span class="s-item icon icon_token" title="token" data-hover="Token : {{ value }}" ></span>' +
+            '   <span class="s-item icon icon_type icon_{{ type }}" title="Request type" data-hover="Request type : {{type}}" ></span>' +
             '   <span class="tokenProfiler">{{profilerLinkTemplate}}</span>' +
             '</li>'),
         tokenProfilerLink: _.template('' +
@@ -32,20 +34,33 @@
             data.push(oneToken);
         });
         var tokenList = '';
-        _.each(data, function (item)
-        {
-            tokenList += templates.tokenListItem(item);
+        window.getConfigurationKey('reverseList',function(reverseList){
+            _.each(data, function (item)
+            {
+                item.date = new Date(item.date);
+                if(reverseList){
+                    tokenList = templates.tokenListItem(item)+tokenList;
+                }else{
+                    tokenList += templates.tokenListItem(item);
+                }
+
+            });
+
+            var dom = document.getElementById('tokenList');
+            var iconClear = '_full' ;
+            if(tokens.length>0){
+                iconClear = '_full'
+            }else{
+                iconClear = '_empty'
+            }
+            dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length,iconClear:iconClear});
         });
+    };
 
-        var dom = document.getElementById('tokenList');
-        var iconClear = '_full' ;
-        if(tokens.length>0){
-            iconClear = '_full'
-        }else{
-            iconClear = '_empty'
-        }
-        dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length,iconClear:iconClear});
 
+    var bind_events = function(){
+        console.debug('bind events');
+        var dom = document.body;
         //manage click on openProfiler button
         $(dom).on('click','.open-profiler',function(jEvent){
             var data = null;
@@ -83,8 +98,47 @@
                 }
             );
         });
-    };
 
+
+
+        $(dom).on('mouseover','[data-hover]',function(jEvent){
+            var target = $(jEvent.target) ;
+            console.dir(target.data('hover'));
+            var messageTarget = target.parent().find('[data-detailsTarget=true]') ;
+            messageTarget.html(target.data('hover'));
+            messageTarget.addClass('hoverFix');
+        });
+        $(dom).on('click','[data-hover]',function(jEvent){
+            var target = $(jEvent.target) ;
+            if (target.data('hoverFix') == 'true'){
+                target.data('hoverFix','false');
+                target.removeClass('hoverFix');
+            }else{
+                target.data('hoverFix','true');
+                target.parent().find('.hoverFix').removeClass('hoverFix');
+                var messageTarget = target.parent().find('[data-detailsTarget=true]') ;
+                target.addClass('hoverFix');
+                messageTarget.addClass('hoverFix');
+            }
+        });
+        $(dom).on('mouseout','[data-hover]',function(jEvent){
+
+            var target = $(jEvent.target) ;
+
+            if (target.data('hoverFix') == 'true'){
+                return ;
+            }
+            var messageTarget = target.parent().find('[data-detailsTarget=true]') ;
+            var otherMatching = target.parent().find('.hoverFix[data-hover]') ;
+            if (otherMatching.length>0){
+                messageTarget.html(otherMatching.first().data('hover'));
+            }else{
+                messageTarget.html(messageTarget.data('url'));
+                messageTarget.removeClass('hoverFix');
+            }
+
+        });
+    };
 
     var startup = function ()
     {
@@ -133,4 +187,8 @@
     );
 
     startup();
+    $('body').ready(function(){
+        bind_events();
+    });
+
 })();

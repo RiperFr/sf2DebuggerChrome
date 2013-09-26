@@ -1,63 +1,78 @@
-body{
+body {
     font-family: 'Oxygen', sans-serif;
 }
-.header{
-    position:absolute;
-    top:10px;
-    left :10px;
+
+.header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     font-family: 'PT Sans', sans-serif;
-    font-weight : 700 ;
+    font-weight: 700;
 }
-.tokenHeader{
+
+.tokenHeader {
     font-family: 'PT Sans', sans-serif;
-    font-weight : 700 ;
+    font-weight: 700;
 }
 
 .tokenList {
     list-style: none;
-    margin : 0;
+    margin: 0;
     padding: 0;
     white-space: nowrap;
     text-align: right;
 }
 
-.tokenListItem{
+.tokenListItem {
     list-style: none;
     margin: 0;
-    padding:0;
-    padding-top:3px;
-    padding-bottom:5px;
-    padding-left:3px;
+    padding: 0;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    padding-left: 3px;
     line-height: 20px;
 
     border-radius: 2px;
 }
 
-.tokenListItem:hover{
-    background-color: rgba(161,227,4,0.5) ;
-    transition: 0.1s ease-in-out ;
+.tokenListItem:hover {
+    background-color: rgba(161, 227, 4, 0.5);
+    transition: 0.1s ease-in-out;
     /*background-color: #a1e304;*/
 }
-.tokenUrl{
+
+.tokenUrl {
     text-align: left;
-    width:400px;
+    width: 600px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.tokenListItem span{
-    display: inline-block;
-    margin-right:15px;
-}
-.tokenListItem span:last-child{
-    margin-right : 5px;
-}
-.tokenValue{
-    width:60px;
-}
-.tokenType{
-    width:100px;
+
+.tokenUrl.hoverFix {
+    font-family: Courier, sans-serif;
 }
 
+.tokenListItem>span {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.tokenListItem>span:last-child {
+    margin-right: 5px;
+}
+
+.tokenListItem>span.s-item {
+    margin-right: 0;
+    margin-bottom: -6px;
+    cursor: pointer;
+}
+
+.tokenValue {
+    width: 60px;
+}
+
+.tokenType {
+}
 
 .pure-button-xsmall {
     font-size: 70%;
@@ -100,49 +115,108 @@ body{
     background: rgb(66, 184, 221); /* this is a light blue */
 }
 
-
-
-.tokenHeader{
-    padding-left:10px;
-    padding-right:10px;
+.tokenHeader {
+    padding-left: 10px;
+    padding-right: 10px;
     text-align: right;
     line-height: 22px;
 }
-.tokenHeader span{
-    display:inline-block;
+
+.tokenHeader span {
+    display: inline-block;
 }
 
 .icon {
 
     display: inline-block;
-    height:16px;
-    width:16px;
+    height: 16px;
+    width: 16px;
     background-repeat: no-repeat;
     background-position: center center;
-    border-radius: 2px;
-    line-height:16px;
+    /*border-radius: 2px;*/
+    line-height: 16px;
     background-size: 100% 100%;
 }
 
-.tokenHeader .icon:hover{
+.tokenHeader .icon:hover {
     cursor: pointer;
-    background-color: rgba(161,227,4,0.2) ;
-    transition: 0.1s ease-in-out ;
+    background-color: rgba(161, 227, 4, 0.2);
+    transition: 0.1s ease-in-out;
 
 }
-
 
 .icon.icon_config {
     background-image: url('config.png');
 }
 
 .icon.icon_clear_full {
-     background-image: url('clear-full.png');
- }
+    background-image: url('clear-full.png');
+}
+
 .icon.icon_clear_empty {
     background-image: url('clear-empty.png');
 }
 
 .icon.icon_app {
     background-image: url('../icon32.png');
+}
+
+.tokenListItem .icon {
+    margin-bottom: -6px;
+    background-image: url('Very-Basic-Unchecked-checkbox-icon.png');
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 2px;
+}
+
+.icon.icon_main_frame {
+    background-image: url('Overview-Pages-3-icon.png');
+}
+
+.icon.icon_xmlhttprequest {
+    background-image: url('Debug-Variable-icon.png');
+}
+
+.icon.icon_token {
+    background-image: url('Ecommerce-Qr-code-icon.png');
+}
+.icon.icon_date {
+    background-image: url('Debug-Watch-icon.png');
+}
+
+.status {
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 70%;
+    display: block;
+    height: 10px;
+    line-height: 10px;
+    text-shadow: 0 1px 1px rgba(75, 75, 75, 0.2);
+    color:#ffffff;
+}
+
+.status_200 {
+    background-color: rgb(28, 184, 65);
+}
+
+.status_300 {
+    background-color: rgb(66, 184, 221);
+}
+
+.status_400 {
+    background-color:  rgb(223, 117, 20);
+}
+
+.status_500 {
+    background-color: rgb(202, 60, 60);
+}
+
+.tokenListItem .icon.hoverFix, .status.hoverFix {
+    background-color: rgba(66, 184, 221, 0.4);
+    border-color: rgba(66, 184, 221, 0.4);
 }

@@ -41,6 +41,9 @@
     "options_form_autoClearTab" :{
         "message" : "Automatically clear all token when tab is refreshed"
     },
+    "options_form_reverseList" :{
+        "message" : "Display new token detected on top of the list"
+    },
     "yes" :{
         "message" : "Yes"
     },

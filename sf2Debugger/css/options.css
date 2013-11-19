@@ -42,3 +42,7 @@ body, .body pure-g {
 .big-icon.logo{
     background-image: url('../icon.png');
 }
+textarea{
+    width:50%;
+    height:100px;
+}

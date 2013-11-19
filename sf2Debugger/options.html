@@ -86,6 +86,23 @@
                     <button type="submit" class="pure-button pure-button-primary" i18n="options_form_save"></button>
                 </div>
             </fieldset>
+            <fieldset>
+                <legend>Advanced Configurations</legend></h3>
+                <div class="pure-control-group">
+                    <label for="profilerUrlTemplate" >profilerUrlTemplate</label>
+                    <textarea id="profilerUrlTemplate" name="profilerUrlTemplate" wrap="off">#domain#/app.php/_profiler/*token*
+#domain#/app_dev.php/_profiler/*token*
+#domain#/_profiler/*token*</textarea>
+                </div>
+                <div class="pure-control-group">
+                    <label for="profilerUrlTemplateMemory" >profilerUrlTemplateMemory</label>
+                    <textarea id="profilerUrlTemplateMemory" name="profilerUrlTemplateMemory"  wrap="off" ></textarea>
+                </div>
+                <div class="pure-controls">
+                    <button type="reset" class="pure-button" i18n="options_form_reset">reset</button>
+                    <button type="submit" class="pure-button pure-button-primary" i18n="options_form_save"></button>
+                </div>
+            </fieldset>
         </form>
     </div>
     <div class="pure-u-1-6">

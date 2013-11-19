@@ -7,6 +7,7 @@
     var startup = function () {
         var form = $('form[name=options]').first();
         disableForm(form); //block any user interaction
+        initForm(form,window.getDefaultConfiguration());
         window.getConfiguration(function (config) {
             initForm(form, config);
             enableForm(form); //re-enable all userInteraction
@@ -57,15 +58,17 @@
     var submitForm = function (form) {
         disableForm(form); // be sure the user do not submit twice
         var data = getDataFromForm(form);
+        console.dir(data);
         window.storeConfiguration(data, function () {
             alert(chrome.i18n.getMessage('options_configuration_saved'));
-            chrome.tabs.query(
+            enableForm(form);
+            /*chrome.tabs.query(
                 {currentWindow: true, active: true},
                 function (tabArray) {
                     tabId = tabArray[0].id;
                     chrome.tabs.remove(tabId);
                 }
-            );
+            );*/
         });
     };
 
@@ -76,9 +79,9 @@
      */
     var getDataFromForm = function (form) {
         enableForm(form);
-        var string = form.serialize();
+        var data = form.serializeArray();
         disableForm(form);
-        var fields = string.split("&");
+       /*var fields = string.split("&");
 
         var data = [];
         _.each(fields, function (item) {
@@ -87,7 +90,7 @@
                 name: split[0],
                 value: cleanFormData(split[1])
             });
-        });
+        });*/
         return data;
     };
 
@@ -98,7 +101,7 @@
      * @returns {*}
      */
     var cleanFormData = function (data) {
-        if (data == 'null') {
+        if (data === 'null') {
             return null;
         }
         if (data == 'true') {
@@ -106,6 +109,9 @@
         }
         if (data == 'false') {
             return false;
+        }
+        if (data == ''){
+            return ' ' ;
         }
         return data ;
     };
@@ -117,9 +123,15 @@
         if (data == true) {
             return 'true';
         }
-        if (data == false) {
+        if (data === false) {
             return 'false';
         }
+        if(_.isArray(data)){
+            return data.join('\n');
+        }
+
+
+
         return data ;
     };
 

@@ -33,7 +33,7 @@
         }
         createProfilerLink(token,target,function(url){
             window.getConfigurationKey('profilerDestination', function (profilerDestination) {
-                if (profilerDestination == 'popup') {
+                if (token.popup === true || profilerDestination == 'popup') {
                     chrome.windows.create({'url': url, 'type': 'popup'});
                 } else {
                     chrome.tabs.create({'url': url});

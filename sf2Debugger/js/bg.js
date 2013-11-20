@@ -63,7 +63,7 @@
         getMainToken(tabId, function (token) {
             if (token !== null) {
                 getTokenQuantity(tabId, function (tokenQuantity) {
-                    if (tokenQuantity > 1) { //Multiple token, we display the popup for selection
+                    if (tokenQuantity >= 1) { //Multiple token, we display the popup for selection
 
                     } else { // only one token (we open the profiler directly if the configuration say so)
                         window.getConfigurationKey('alwaysDisplayPopup', function (alwaysDisplayPopup) {
@@ -89,7 +89,10 @@
         }
         getTokenQuantity(tabId, function (tokenQuantity) {
             window.getConfigurationKey('alwaysDisplayPopup', function (alwaysDisplayPopup) {
-                if (tokenQuantity > 1 || alwaysDisplayPopup == true) {
+                if(tokenQuantity>=1){
+                    enableIcon(tabId);
+                }
+                if (tokenQuantity >= 1 || alwaysDisplayPopup == true) {
                     chrome.pageAction.setPopup({
                         tabId: tabId,
                         popup: "tokenSelection.html"
@@ -154,7 +157,13 @@
     var addToken = function (tabId, data, callback) {
         //console.debug('addToken');
         initTabDb(tabId, function () {
-            data.profilerTokenSerial = JSON.stringify(data);
+            data.popup = false ;
+            var profilerTokenSerial = JSON.stringify(data);
+            data.popup = true ;
+            var profilerTokenSerialPopup = JSON.stringify(data);
+            data.popup = false ;
+            data.profilerTokenSerial = profilerTokenSerial ;
+            data.profilerTokenSerialPopup = profilerTokenSerialPopup ;
             db[tabId].tokens.push(data);
             updatePageAction(tabId, function () {
                 sendPopupMessage("TokenListUpdated", {});

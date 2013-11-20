@@ -62,13 +62,13 @@
         window.storeConfiguration(data, function () {
             alert(chrome.i18n.getMessage('options_configuration_saved'));
             enableForm(form);
-            /*chrome.tabs.query(
+            chrome.tabs.query(
                 {currentWindow: true, active: true},
                 function (tabArray) {
                     tabId = tabArray[0].id;
                     chrome.tabs.remove(tabId);
                 }
-            );*/
+            );
         });
     };
 

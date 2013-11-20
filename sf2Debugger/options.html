@@ -87,16 +87,24 @@
                 </div>
             </fieldset>
             <fieldset>
-                <legend>Advanced Configurations</legend></h3>
+                <legend i18n="option_form_section_profiler_url" >Profiler urls</legend></h3>
+
+
                 <div class="pure-control-group">
-                    <label for="profilerUrlTemplate" >profilerUrlTemplate</label>
+                    <label for="profilerUrlTemplate" i18n="option_profiler_urls" >profilerUrlTemplate</label>
                     <textarea id="profilerUrlTemplate" name="profilerUrlTemplate" wrap="off">#domain#/app.php/_profiler/*token*
 #domain#/app_dev.php/_profiler/*token*
 #domain#/_profiler/*token*</textarea>
+                    <div class="helpField" i18n="option_form_help_template_url" >
+
+                    </div>
                 </div>
-                <div class="pure-control-group">
-                    <label for="profilerUrlTemplateMemory" >profilerUrlTemplateMemory</label>
+                <div class="pure-control-group" >
+                    <label for="profilerUrlTemplateMemory"  i18n="option_profiler_memory" >profilerUrlTemplateMemory</label>
                     <textarea id="profilerUrlTemplateMemory" name="profilerUrlTemplateMemory"  wrap="off" ></textarea>
+                    <div class="helpField" i18n="option_form_help_memory">
+
+                    </div>
                 </div>
                 <div class="pure-controls">
                     <button type="reset" class="pure-button" i18n="options_form_reset">reset</button>

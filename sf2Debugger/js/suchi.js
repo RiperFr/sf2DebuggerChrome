@@ -2,10 +2,7 @@
 
     var listToTry = [] ;
 
-    var memory = {
-        'toto.com' : 'http://toto.fr/app_dev.php/_profiler/*token*',
-        'ldoubinine.fr' : 'http://toto.fr/app_dev.php/_profiler/*token*'
-    };
+    var memory = {};
 
 
     var startup = function(){
@@ -52,6 +49,10 @@
             }
         });
         $('.schemeSelector input:checked').trigger('change');
+
+        $('.add').on('click',function(){
+            go('options.html');
+        });
     };
 
 
@@ -93,28 +94,37 @@
         console.debug('remember : '+domain+ ' '+uri);
         memory[domain] = uri ;
         var textMemory = [];
+        console.dir(memory);
         _.each(memory,function(item,key){
             textMemory.push(key+'|'+item);
         });
         textMemory = textMemory.join("\n");
+
         window.storeConfigurationKey('profilerUrlTemplateMemory',textMemory,callback);
     };
 
 
-
+    /**
+     * Load URL and put hte page into loading mode
+     * @param url
+     */
     var go = function(url){
         console.debug('GO : '+url);
         $('body').addClass('isloading');
         window.location = url ;
     };
+
+    //Starter
     window.getConfigurationKey('profilerUrlTemplate',function(profilerUrlTemplate){
 
         listToTry = profilerUrlTemplate.split("\n");
         window.getConfigurationKey('profilerUrlTemplateMemory',function(profilerUrlTemplateMemory){
             var lines = profilerUrlTemplateMemory.split("\n");
             _.each(lines,function(item){
-                var elements = item.split('|');
-                memory[elements[0]] = elements[1];
+                if(item!==''){
+                    var elements = item.split('|');
+                    memory[elements[0]] = elements[1];
+                }
             });
             startup();
         });

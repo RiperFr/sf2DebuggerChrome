@@ -1,23 +1,70 @@
 body{
     text-align: center;
     background-color: #f4f4f4;
+    font-family: 'Oxygen', sans-serif;
+
+    -webkit-animation: fadein 500ms; /* Safari and Chrome */
+    animation: fadein 500ms;
 }
+
 
 .loading{
     display:none;
+    padding-top:100px;
 }
 body.isloading .loading{
     display:block;
     position:absolute;
     top:0;
     left:0;
-    background-color: rgba(0,0,0,0.4);
-    height:5000px;
+    height:100%;
     width:100%;
+}
+body.isloading .chooser{
+    display:none;
 }
 
 body.isloading{
     overflow: hidden;
+}
+
+.tardis{
+    display:inline-block;
+    height:224px;
+    width:128px;
+    background-image: url('minimalist_tardis_by_silveralchemistpony-d6dvtva-128.png');
+
+    -webkit-animation: fadeinout 1500ms; /* Safari and Chrome */
+    animation: fadeinout 1500ms;
+
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+
+}
+
+
+@keyframes fadeinout {
+    0% { opacity: 0; }
+    50% {opacity: 1; }
+    100%   { opacity: 0; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadeinout {
+    0% { opacity: 0; }
+    50% {opacity: 1; }
+    100%   { opacity: 0; }
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    100%   { opacity: 1; }
 }
 
 .urlChooserList li,.urlChooserList{
@@ -49,15 +96,18 @@ body.isloading{
 
 .urlChooserList .uriItem label{
     cursor: pointer;
+    display:block;
 }
 .urlChooserList .uriItem:hover{
     border-radius: 4px;
     background-color: rgba(161, 227, 4, 0.5);
+    transition: background-color 200ms ease;
+    -webkit-transition: background-color 200ms ease;
 
 }
 
 
-.urlChooserList input{
+.urlChooserList input[type=radio]{
     display:none;
 }
 
@@ -66,7 +116,7 @@ body.isloading{
     margin:0;
     padding:0;
 }
-.schemeSelector{
+.schemeSelector, .add{
     display: inline-block;
     border: 1px solid rgba(161, 227, 4, 0.5);
     border-radius: 4px;
@@ -92,7 +142,29 @@ body.isloading{
     border-top-right-radius: 4px;
 }
 
+.schemeSelector label:last-of-type:hover{
+    background-image:linear-gradient(to right, white, rgba(161, 227, 4, 0.1),rgba(161, 227, 4, 0.1));
+}
+.schemeSelector label:last-of-type.selected{
+    background-image:linear-gradient(to right, white, rgba(161, 227, 4, 0.5),rgba(161, 227, 4, 0.5));
+}
 
-.schemeSelector label.selected{
-    background-color: rgba(161, 227, 4, 0.5);
+.schemeSelector label:first-of-type:hover{
+    background-image:linear-gradient(to left, white, rgba(161, 227, 4, 0.1),rgba(161, 227, 4, 0.1));
+}
+.schemeSelector label:first-of-type.selected{
+    background-image:linear-gradient(to left, white, rgba(161, 227, 4, 0.5),rgba(161, 227, 4, 0.5));
+}
+
+
+.add{
+    margin-top:15px;
+    padding:10px;
+}
+.add:hover{
+    background-color : rgba(161, 227, 4, 0.1);
+
+}
+.add:active{
+    background-color : rgba(161, 227, 4, 0.5);
 }

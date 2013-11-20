@@ -1,10 +1,17 @@
 body {
     font-family: 'Oxygen', sans-serif;
+    overflow-x: hidden;
+    padding:0;
+    margin: 5px;
+}
+
+html{
+
+    padding:0;
 }
 
 .header {
     position: absolute;
-    top: 10px;
     left: 10px;
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
@@ -28,10 +35,8 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 3px;
-    padding-bottom: 5px;
+    padding-bottom:4px;
     padding-left: 3px;
-    line-height: 20px;
-
     border-radius: 2px;
 }
 
@@ -46,6 +51,7 @@ body {
     width: 600px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: -5px;
 }
 
 .tokenUrl.hoverFix {

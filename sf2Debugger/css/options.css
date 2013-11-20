@@ -46,3 +46,20 @@ textarea{
     width:50%;
     height:100px;
 }
+
+
+.helpField{
+    position:absolute;
+    display:inline-block;
+    margin-left:10px;
+    margin-right:10px;
+    font-size: 70%;
+    margin-top:10px;
+}
+
+.helpField ul,.helpField li{
+    margin:0;
+}
+.helpField ul{
+    margin-top:3px;
+}

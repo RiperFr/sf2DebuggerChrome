@@ -20,7 +20,7 @@
             '   <span class="tokenProfiler">{{profilerLinkTemplate}}</span>' +
             '</li>'),
         tokenProfilerLink: _.template('' +
-            '<a href="#" class="open-profiler pure-button pure-button-xsmall pure-button-secondary" data-token=\'{{profilerTokenSerial}}\' >Profiler</a>')
+            '<div class="pure-button pure-button-xsmall pure-button-secondary"><a href="#" class="open-profiler" data-token=\'{{profilerTokenSerial}}\' >Profiler</a><a href="#" class="open-profiler-popup popupLink" data-token=\'{{profilerTokenSerialPopup}}\' ><span data-token=\'{{profilerTokenSerialPopup}}\' class="icon popup"></span></a></div>')
     };
 
 
@@ -69,6 +69,22 @@
                     data = item.nodeValue;
                 }
             });
+            if(data == null){
+                alert('An error occurred');
+            }else{
+                var token = JSON.parse(data);
+                window.openToken(token);
+            }
+        });
+
+        $(dom).on('click','.open-profiler-popup',function(jEvent){
+            var data = null;
+            _.each(jEvent.target.attributes, function(item){
+                if(item.nodeName == 'data-token'){
+                    data = item.nodeValue;
+                }
+            });
+            console.dir(jEvent.target);
             if(data == null){
                 alert('An error occurred');
             }else{

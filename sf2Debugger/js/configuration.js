@@ -24,8 +24,23 @@
         {
             name: "reverseList",
             value: true
+        },
+        {
+            name: 'profilerUrlTemplate',
+            value:
+                '#domain#/app.php/_profiler/*token*'+"\n"+
+                '#domain#/app_dev.php/_profiler/*token*'+"\n"+
+                '#domain#/_profiler/*token*'
+
+        },
+        {
+            name: 'profilerUrlTemplateMemory',
+            value: ''
         }
+
     ];
+
+
 
     var startup = function () {
             getConfiguration(function (configurations) {
@@ -47,6 +62,9 @@
             }
         });
         return to;
+    };
+    var getDefaultConfiguration = function(){
+        return defaultValues ;
     };
 
 
@@ -113,10 +131,39 @@
 
     };
 
+
+    /**
+     * Store only one key in Configuration.
+     * @param key
+     * @param data
+     * @param callback
+     */
+    var storeConfigurationKey = function(key,data,callback){
+        getConfiguration(function(config){
+            var done = false ;
+            _.each(config,function(item,indice){
+                if(item.name == key){
+                    config[indice].value = data ;
+                    done = true ;
+                }
+            });
+            if(done == false){
+                config.push({
+                    name : key,
+                    value:data
+                });
+            }
+            console.dir(config);
+            storeConfiguration(config,callback);
+        })
+    };
+
     window.getConfigurationKey = getConfigurationKey;
     window.getConfiguration = getConfiguration;
+    window.getDefaultConfiguration = getDefaultConfiguration;
 
     window.storeConfiguration = storeConfiguration;
+    window.storeConfigurationKey = storeConfigurationKey;
 
 
     startup();

@@ -1,10 +1,17 @@
 body {
     font-family: 'Oxygen', sans-serif;
+    overflow-x: hidden;
+    padding:0;
+    margin: 5px;
+}
+
+html{
+
+    padding:0;
 }
 
 .header {
     position: absolute;
-    top: 10px;
     left: 10px;
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
@@ -28,10 +35,8 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 3px;
-    padding-bottom: 5px;
+    padding-bottom:4px;
     padding-left: 3px;
-    line-height: 20px;
-
     border-radius: 2px;
 }
 
@@ -46,6 +51,7 @@ body {
     width: 600px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: -5px;
 }
 
 .tokenUrl.hoverFix {
@@ -168,7 +174,15 @@ body {
     border: 2px solid transparent;
     border-radius: 2px;
 }
-
+.icon.popup{
+    height:10px;
+    width:10px;
+    background-image: url('Debug-Open-in-browser-icon.png');
+    margin-bottom: -4px;
+    margin-left:0;
+    margin-right:0;
+    line-height: 10px;
+}
 .icon.icon_main_frame {
     background-image: url('Overview-Pages-3-icon.png');
 }
@@ -219,4 +233,26 @@ body {
 .tokenListItem .icon.hoverFix, .status.hoverFix {
     background-color: rgba(66, 184, 221, 0.4);
     border-color: rgba(66, 184, 221, 0.4);
+}
+
+.pure-button{
+    padding:0;
+}
+.pure-button a{
+    padding-left:5px;
+    padding-right:2px;
+    padding-top:2px;
+    padding-bottom:3px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    border-left : 1px solid rgba(255, 255, 255, 0.2);
+    display:inline-block;
+}
+.pure-button a:first-of-type{
+    border-left:none;
+    padding-right:2px;
+}
+.pure-button a:last-of-type{
+    padding-left:2px;
 }

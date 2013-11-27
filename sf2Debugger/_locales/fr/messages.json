@@ -42,12 +42,39 @@
         "message" : "Vider la liste des token lors du rafraichissement d'un onglet"
     },
     "options_form_reverseList" :{
-        "message" : "Affiche les token détécté en haut de la liste"
+        "message" : "Affiche les token détéctés en haut de la liste"
     },
     "yes": {
         "message": "Oui"
     },
     "no": {
         "message": "Non"
+    },
+    "loading_profiler": {
+        "message" : "Chargement du profiler"
+    },
+    "choose_a_profiler_url": {
+        "message" : "Choisissez la bonne URL du profiler"
+    },
+    "rembemer_choice": {
+        "message" : "Mémoriser mon choix"
+    },
+    "add_new_template_url": {
+        "message" : "Ajouter de nouvelles URL"
+    },
+    "option_profiler_urls": {
+        "message" : "URL templates du profiler"
+    },
+    "option_profiler_memory": {
+        "message" : "Choix mémorisés"
+    },
+    "option_form_section_profiler_url": {
+        "message" : "URL du profiler"
+    },
+    "option_form_help_template_url": {
+        "message" : "Liste toutes les URL possible du profiler. N'oubliez pas de mettre les 'placeholders'.<br>Un template d'url par ligne<ul><li><i>#domain# sera remplacé par le domain de la requette</i></li><li><i>*token* sera remplacé par le token de la requette</i></li></ul>"
+    },
+    "option_form_help_memory": {
+        "message" : "Liste des choix mémorisés dans le selecteur d'URL<br>        Format : domainName|URL (<i>L'URL doit contenir seulement le placeholder du token (*token*)</i>)<br><br> Cette liste est sycnhronisée dans le cloud et est partagée par toutes vos instances de Chrome"
     }
 }

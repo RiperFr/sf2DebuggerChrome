@@ -60,7 +60,7 @@
                         <option value="newtab" i18n="options_form_profilerDestination_newTab">New Tab</option>
                     </select>
                 </div>
-                <div class="pure-control-group">
+                <div class="pure-control-group" style="display:none;">
                     <label for="alwaysDisplayPopup" i18n="options_form_alwaysDisplayPopup"></label>
                     <select name="alwaysDisplayPopup" id="alwaysDisplayPopup">
                         <option value="true" i18n="yes" selected>Yes</option>
@@ -80,6 +80,31 @@
                         <option value="true" i18n="yes" selected>Yes</option>
                         <option value="false" i18n="no">No</option>
                     </select>
+                </div>
+                <div class="pure-controls">
+                    <button type="reset" class="pure-button" i18n="options_form_reset">reset</button>
+                    <button type="submit" class="pure-button pure-button-primary" i18n="options_form_save"></button>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend i18n="option_form_section_profiler_url" >Profiler urls</legend></h3>
+
+
+                <div class="pure-control-group">
+                    <label for="profilerUrlTemplate" i18n="option_profiler_urls" >profilerUrlTemplate</label>
+                    <textarea id="profilerUrlTemplate" name="profilerUrlTemplate" wrap="off">#domain#/app.php/_profiler/*token*
+#domain#/app_dev.php/_profiler/*token*
+#domain#/_profiler/*token*</textarea>
+                    <div class="helpField" i18n="option_form_help_template_url" >
+
+                    </div>
+                </div>
+                <div class="pure-control-group" >
+                    <label for="profilerUrlTemplateMemory"  i18n="option_profiler_memory" >profilerUrlTemplateMemory</label>
+                    <textarea id="profilerUrlTemplateMemory" name="profilerUrlTemplateMemory"  wrap="off" ></textarea>
+                    <div class="helpField" i18n="option_form_help_memory">
+
+                    </div>
                 </div>
                 <div class="pure-controls">
                     <button type="reset" class="pure-button" i18n="options_form_reset">reset</button>

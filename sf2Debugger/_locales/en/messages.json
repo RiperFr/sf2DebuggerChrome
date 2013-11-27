@@ -49,6 +49,33 @@
     },
     "no" :{
         "message" : "No"
+    },
+    "loading_profiler": {
+        "message" : "Loading profiler"
+    },
+    "choose_a_profiler_url": {
+        "message" : "Choose a profiler url"
+    },
+    "rembemer_choice": {
+        "message" : "Remember my choice"
+    },
+    "add_new_template_url": {
+        "message" : "Add new template url"
+    },
+    "option_profiler_urls": {
+        "message" : "Profiler templates urls"
+    },
+    "option_profiler_memory": {
+        "message" : "Remembered choices"
+    },
+    "option_form_section_profiler_url": {
+        "message" : "Profiler urls"
+    },
+    "option_form_help_template_url": {
+        "message" : "Define all url possible for profiler. Don't forget to put placeholders.<br>One url template per lines<ul><li><i>#domain# will be replaced by the domain depending of the request</i></li><li><i>*token* will be replaced by the token of the request</i></li></ul>"
+    },
+    "option_form_help_memory": {
+        "message" : " List all remembered choice made in the Url chooser.<br>        Format : domainName|url (<i>The url must contain only the token placeholder</i>)<br><br>This field sync in cloud and shared between all your chrome instance."
     }
 
 }

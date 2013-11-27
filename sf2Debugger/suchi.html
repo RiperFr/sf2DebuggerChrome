@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>SF2 profiler</title>
+    <meta name="description" content="">
+    <meta name="author" content="Sven Read">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/suchi.css">
+    <script src="js/ga.js"></script>
+
+</head>
+
+<body>
+<div class="loading">
+    <div class="tardis"></div>
+    <h2 i18n="loading_profiler">Loading profiler</h2>
+</div>
+<div class="chooser">
+    <div class="pure-g">
+        <div class="pure-u-1-6">
+        </div>
+        <div class="pure-u-2-3">
+            <div class="header">
+                <span class="big-icon logo"></span>
+
+                <h1 i18n="choose_a_profiler_url">Choose a profiler url</h1>
+            </div>
+        </div>
+        <div class="pure-u-1-6">
+        </div>
+    </div>
+    <div>
+        <form id="urlFormChooser">
+            <div class="schemeSelector">
+                <label class="shemeSansS"><input type="radio" name="scheme" value="http://" checked>http://</label>
+                <label class="shemeAvecS"><input type="radio" name="scheme" value="https://">http<b>s</b>://</label>
+            </div>
+            <br>
+
+            <ul class="urlChooserList" id="urlChooserList">
+            </ul>
+            <br>
+            <label><span i18n="rembemer_choice" >Remember my choice</span>
+                <input type="checkbox" name="remember" value="1"/>
+            </label>
+            <input type="hidden" value="" id="token" name="token">
+            <input type="hidden" value="" id="panel" name="panel">
+            <input type="hidden" value="" id="domain" name="domain">
+        </form>
+
+        <button class="add"  i18n="add_new_template_url">Add new template url</button>
+    </div>
+</div>
+<script src="js/libs/underscore.js"></script>
+<script src="js/libs/jquery.js"></script>
+<script src="js/configuration.js"></script>
+<script src="js/suchi.js"></script>
+<script src="js/i18n.js"></script>
+</body>

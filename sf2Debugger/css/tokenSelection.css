@@ -42,7 +42,7 @@ html{
 
 .tokenListItem:hover {
     background-color: rgba(161, 227, 4, 0.5);
-    transition: 0.1s ease-in-out;
+    /*transition: 0.1s ease-in-out;*/
     /*background-color: #a1e304;*/
 }
 

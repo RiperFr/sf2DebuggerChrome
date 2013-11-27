@@ -84,15 +84,28 @@
                     if (item.name == keyName) {
                         callback.apply(this, [item.value]);
                         br = true; //avoid calling callback twice
-                        //console.debug(item.name+' found') ;
                     }
                 });
             }
             if(br === false){
-                //console.debug('Default value used for configuration.'+keyName);
                 callback.apply(this,[getDefaultValue(keyName)]);
             }
         })
+    };
+
+
+    var extractConfiguration = function(keyName,config){
+        var result = null ;
+        _.each(config, function (item) {
+            if (item.name == keyName) {
+                result = item.value ;
+                return result ;
+            }
+        });
+        if(result == null){
+            result = getDefaultValue(keyName)
+        }
+        return result ;
     };
 
     /**
@@ -116,19 +129,28 @@
      * @param callback
      */
     var storeConfiguration = function (data, callback) {
-        console.dir(data);
         if(data == null){
             chrome.storage.sync.remove('configuration',function(){
-                console.debug('Configuration cleared');
+                callConfigurationReload.apply(this);
                 callback.apply(this);
             })
         }else{
             chrome.storage.sync.set({'configuration': data}, function () {
-                console.debug('Configuration saved');
+                callConfigurationReload.apply(this);
                 callback.apply(this);
             });
         }
 
+    };
+
+
+    var callConfigurationReload = function(){
+        chrome.extension.sendRequest(
+            {
+                method: "reloadConfiguration",
+                data  : {}
+            }
+        );
     };
 
 
@@ -153,7 +175,6 @@
                     value:data
                 });
             }
-            console.dir(config);
             storeConfiguration(config,callback);
         })
     };
@@ -164,6 +185,8 @@
 
     window.storeConfiguration = storeConfiguration;
     window.storeConfigurationKey = storeConfigurationKey;
+
+    window.extractConfiguration = extractConfiguration ;
 
 
     startup();

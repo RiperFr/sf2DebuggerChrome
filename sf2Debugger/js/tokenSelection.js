@@ -4,6 +4,22 @@
         interpolate: /\{\{(.+?)\}\}/g
     };
 
+    var Configuration ;
+
+    /**
+     * Load the entire configuration. Will be updated periodically and on configuration save
+     * @param callBack
+     */
+    function loadConfiguration(callBack){
+        if(!callBack){
+            callBack = function(){};
+        }
+        window.getConfiguration(function(config){
+            Configuration = config ;
+            callBack.apply(this);
+        });
+    }
+
     var templates = {
         tokenList        : _.template('<div class="tokenHeader">' +
             '<span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span> ' +
@@ -34,32 +50,30 @@
             data.push(oneToken);
         });
         var tokenList = '';
-        window.getConfigurationKey('reverseList',function(reverseList){
-            _.each(data, function (item)
-            {
-                item.date = new Date(item.date);
-                if(reverseList){
-                    tokenList = templates.tokenListItem(item)+tokenList;
-                }else{
-                    tokenList += templates.tokenListItem(item);
-                }
-
-            });
-
-            var dom = document.getElementById('tokenList');
-            var iconClear = '_full' ;
-            if(tokens.length>0){
-                iconClear = '_full'
+        var reverseList = window.extractConfiguration('reverseList',Configuration);
+        _.each(data, function (item)
+        {
+            item.date = new Date(item.date);
+            if(reverseList){
+                tokenList = templates.tokenListItem(item)+tokenList;
             }else{
-                iconClear = '_empty'
+                tokenList += templates.tokenListItem(item);
             }
-            dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length,iconClear:iconClear});
+
         });
+
+        var dom = document.getElementById('tokenList');
+        var iconClear = '_full' ;
+        if(tokens.length>0){
+            iconClear = '_full'
+        }else{
+            iconClear = '_empty'
+        }
+        dom.innerHTML = templates.tokenList({tokenList: tokenList,tokenCount:tokens.length,iconClear:iconClear});
     };
 
 
     var bind_events = function(){
-        console.debug('bind events');
         var dom = document.body;
         //manage click on openProfiler button
         $(dom).on('click','.open-profiler',function(jEvent){
@@ -84,7 +98,6 @@
                     data = item.nodeValue;
                 }
             });
-            console.dir(jEvent.target);
             if(data == null){
                 alert('An error occurred');
             }else{
@@ -119,7 +132,6 @@
 
         $(dom).on('mouseover','[data-hover]',function(jEvent){
             var target = $(jEvent.target) ;
-            console.dir(target.data('hover'));
             var messageTarget = target.parent().find('[data-detailsTarget=true]') ;
             messageTarget.html(target.data('hover'));
             messageTarget.addClass('hoverFix');
@@ -177,7 +189,6 @@
     };
     var setTokens = function (tokens)
     {
-        console.debug('setTokens');
         constructList(tokens);
     };
 
@@ -201,8 +212,9 @@
 
         }
     );
-
-    startup();
+    loadConfiguration(function(){
+        startup();
+    });
     $('body').ready(function(){
         bind_events();
     });

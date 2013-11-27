@@ -7,7 +7,6 @@
         var url = 'suchi.html#domain='+domain + '&token=' + token.value;
         if(target == null){
             window.getConfigurationKey('defaultPage', function (defaultPage) {
-
                 if(defaultPage !== null && defaultPage !== 'null'){
                     url += '&panel='+defaultPage ;
                 }else{

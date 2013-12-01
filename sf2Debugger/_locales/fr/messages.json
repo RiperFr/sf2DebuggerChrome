@@ -1,6 +1,6 @@
 {
     "appName": {
-        "message": "Raccourcis profiler Symfony2",
+        "message": "Symfony2 Profiler",
         "description": "Donne accès directement depuis la bare d'adresse au Syfony2Profiler"
     },
     "appDesc": {

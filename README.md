@@ -1,4 +1,7 @@
-# sf2DebuggerChrome
+# Symfony2 Profiler shortcut
+
+
+![Alt text](/ScreenShot/promo_1400.png "Symfony2 Profiler shortcut")
 
 Give access to Symfoy2 Profiler if any Response from a server is made with the "X-Debug-Token". Very useful for REST & AJAX Development/testing
 

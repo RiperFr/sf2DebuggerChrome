@@ -123,8 +123,6 @@
                 tokens: [],
                 configuration: {}
             };
-            var autoClearTab = window.extractConfiguration('autoClearTab',Configuration);
-            setTabConfiguration(tabId, 'autoClearTab', autoClearTab);
         }
     };
 
@@ -146,7 +144,7 @@
         db[tabId].tokens = [];
         updatePageAction(tabId);
         sendPopupMessage("TokenListUpdated", {});
-        callback.call(this);
+        console.debug("Clear token");
     };
 
     var getTokens = function (tabId) {
@@ -250,6 +248,7 @@
 
     //Capture main_frame onlu (xxhr request not captured here)
     function startup() {
+        console.debug('startup');
 
         /**
          * Handle main frame
@@ -259,9 +258,12 @@
             var tabId = data.tabId;
             var autoClearTab = window.extractConfiguration('autoClearTab',Configuration);
             var tokenData = forgeInternalToken(data);
+            console.dir(typeof autoClearTab);
+            console.dir(tokenData);
+            console.dir(getTokens(tabId).length);
             if (tokenData !== null) {
                 //We check if the tabHistory must be cleared or kept
-                if (autoClearTab === true) {
+                if (autoClearTab === 'true' && getTokens(tabId).length > 0) {
                     clearToken(tabId);
                 }
                 addToken(tabId, tokenData);

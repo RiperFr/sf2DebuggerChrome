@@ -1,6 +1,6 @@
 {
     "name": "__MSG_appName__",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "description": "__MSG_appDesc__",
     "default_locale": "en",
     "options_page": "options.html",

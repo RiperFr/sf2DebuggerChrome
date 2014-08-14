@@ -30,6 +30,6 @@ https://chrome.google.com/webstore/detail/symfony2-debuger/denlhphadllhcolhlbbbj
 ## Licencing
 This webapp/extension and all original files contained are under [Creative Commons Attribution License (BY-NC-SA)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
-Thanks for VisualPharm for some icons : http://www.visualpharm.com/   [Icon Set on IconArchive](http://www.iconarchive.com/show/icons8-metro-style-icons-by-visualpharm.1.html)
+Thanks for VisualPharm for some icons : http://www.visualpharm.com/ [Icon link](http://icons8.com/icons/#!/416/bug)
 
 Thanks for Symfony2 and SensioLabs for SF icon : http://symfony.com/logo

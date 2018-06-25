@@ -254,12 +254,12 @@
         var main_frame = function (data) {
             var tabId = data.tabId;
             var autoClearTab = window.extractConfiguration('autoClearTab',Configuration);
+            //We check if the tabHistory must be cleared or kept
+            if (autoClearTab === 'true' && getTokens(tabId).length > 0) {
+                clearToken(tabId);
+            }
             var tokenData = forgeInternalToken(data);
             if (tokenData !== null) {
-                //We check if the tabHistory must be cleared or kept
-                if (autoClearTab === 'true' && getTokens(tabId).length > 0) {
-                    clearToken(tabId);
-                }
                 addToken(tabId, tokenData);
                 handleIconDisplay(tabId);
             }

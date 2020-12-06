@@ -20,13 +20,13 @@
         });
     }
 
-    var templates = {
-        tokenList        : _.template('<div class="tokenHeader">' +
-            '<span>'+chrome.i18n.getMessage('tokenDetected')+' : <b>{{tokenCount}}</b></span> ' +
+    const templates = {
+        tokenList: _.template('<div class="tokenHeader">' +
+            '<span>' + chrome.i18n.getMessage('tokenDetected') + ' : <b>{{tokenCount}}</b></span> ' +
             '<span title="Clear" class="icon icon_clear{{iconClear}} action-clear"></span> ' +
             '<span title="Options" class="icon icon_config action-config"></span> ' +
             '</div><ul class="tokenList">{{ tokenList }}</ul>'),
-        tokenListItem    : _.template('' +
+        tokenListItem: _.template('' +
             '<li class="tokenListItem" >' +
             '   <span class="tokenUrl" data-detailsTarget="true" data-url="{{ url }}">{{ url }}</span>' +
             '   <span class="s-item status status_{{codeLevel}}" title="Status" data-hover="{{statusLine}}">{{status}}</span>' +

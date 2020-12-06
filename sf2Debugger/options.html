@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>SF2 profiler</title>
+    <title>SF profiler</title>
     <meta name="description" content="">
     <meta name="author" content="Sven Read">
 
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/options.css">
     <script src="js/ga.js"></script>
-
 </head>
 
 <body>
@@ -32,7 +31,7 @@
     <div class="pure-u-1-6">
     </div>
     <div class="pure-u-2-3">
-        <form class="pure-form pure-form-aligned " name="options">
+        <form class="pure-form pure-form-aligned" name="options">
             <fieldset>
                 <legend>Configuration</legend>
                 <div class="pure-control-group">
@@ -91,9 +90,8 @@
 
 
                 <div class="pure-control-group">
-                    <label for="profilerUrlTemplate" i18n="option_profiler_urls" >profilerUrlTemplate</label>
-                    <textarea id="profilerUrlTemplate" name="profilerUrlTemplate" wrap="off">#domain#/app.php/_profiler/*token*
-#domain#/app_dev.php/_profiler/*token*
+                    <label for="profilerUrlTemplate" i18n="option_profiler_urls">profilerUrlTemplate</label>
+                    <textarea id="profilerUrlTemplate" name="profilerUrlTemplate" wrap="off">#domain#/index.php/_profiler/*token*
 #domain#/_profiler/*token*</textarea>
                     <div class="helpField" i18n="option_form_help_template_url" >
 

@@ -6,7 +6,6 @@ body {
 }
 
 html{
-
     padding:0;
 }
 
@@ -33,17 +32,12 @@ html{
 .tokenListItem {
     list-style: none;
     margin: 0;
-    padding: 0;
-    padding-top: 3px;
-    padding-bottom:4px;
-    padding-left: 3px;
+    padding: 3px 0 4px 3px;
     border-radius: 2px;
 }
 
 .tokenListItem:hover {
     background-color: rgba(161, 227, 4, 0.5);
-    /*transition: 0.1s ease-in-out;*/
-    /*background-color: #a1e304;*/
 }
 
 .tokenUrl {
@@ -133,13 +127,11 @@ html{
 }
 
 .icon {
-
     display: inline-block;
     height: 16px;
     width: 16px;
     background-repeat: no-repeat;
     background-position: center center;
-    /*border-radius: 2px;*/
     line-height: 16px;
     background-size: 100% 100%;
 }
@@ -148,7 +140,6 @@ html{
     cursor: pointer;
     background-color: rgba(161, 227, 4, 0.2);
     transition: 0.1s ease-in-out;
-
 }
 
 .icon.icon_config {
@@ -202,10 +193,7 @@ html{
     background-color: rgba(0, 255, 0, 0.2);
     border: 2px solid transparent;
     border-radius: 5px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding: 1px 2px;
     font-size: 70%;
     display: block;
     height: 10px;
@@ -239,10 +227,7 @@ html{
     padding:0;
 }
 .pure-button a{
-    padding-left:5px;
-    padding-right:2px;
-    padding-top:2px;
-    padding-bottom:3px;
+    padding: 2px 2px 3px 5px;
     color: white;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     text-decoration: none;
